@@ -1020,7 +1020,7 @@ El historial nunca debe perderse.
 
 Una Persona puede tener múltiples Cotizaciones.
 
-Cada Cotización pertenece a una única Persona.
+Cada Cotización pertenece a una única Persona con rol Cliente.
 
 Una Cotización aprobada puede generar uno o varios Proyectos.
 
@@ -1156,7 +1156,7 @@ Toda la información relacionada con esa Persona deberá encontrarse en un únic
 
 El módulo de Cotizaciones representa el punto de transición entre una oportunidad comercial y un proyecto formal.
 
-Toda Cotización pertenece obligatoriamente a una Persona y documenta la propuesta económica y técnica presentada por la organización.
+Toda Cotización pertenece obligatoriamente a una Persona con rol Cliente y documenta la propuesta económica y técnica presentada por la organización.
 
 Una Cotización no representa un proyecto.
 
@@ -1174,7 +1174,7 @@ Debe conservar el historial completo de cada propuesta presentada al cliente, in
 
 # Principios
 
-Toda Cotización debe pertenecer a una Persona.
+Toda Cotización debe pertenecer a una Persona con rol Cliente.
 
 Una Persona puede tener múltiples Cotizaciones.
 
@@ -1204,12 +1204,6 @@ La propuesta fue entregada al cliente y se encuentra pendiente de respuesta.
 
 ---
 
-## En Revisión
-
-El cliente solicitó modificaciones o se encuentra analizando la propuesta.
-
----
-
 ## Aprobada
 
 La Cotización fue aceptada.
@@ -1226,9 +1220,18 @@ La Cotización permanece como parte del historial comercial.
 
 ---
 
-## Cancelada
+## Expirada
 
-La organización decidió cancelar la propuesta antes de su aprobación.
+La fecha de vencimiento fue superada sin aprobación.
+
+La Cotización conserva íntegramente su historial.
+
+---
+
+## Archivada
+
+La Cotización dejó de formar parte de la operación activa, pero permanece disponible
+para consulta histórica.
 
 ---
 
@@ -1242,6 +1245,8 @@ Cada Cotización deberá almacenar como mínimo.
 - Fecha de vencimiento.
 - Estado.
 - Moneda.
+- Título y alcance.
+- Condiciones comerciales.
 - Impuestos.
 - Subtotal.
 - Total.
@@ -1269,11 +1274,87 @@ El sistema calculará automáticamente los importes.
 
 # Versiones
 
-Una Cotización puede modificarse varias veces antes de ser aprobada.
+Mientras una Cotización permanezca en Borrador, su versión actual podrá editarse sin
+crear versiones adicionales.
 
-El sistema deberá conservar el historial de versiones cuando sea posible.
+Una versión aprobada representa un acuerdo comercial.
 
-Esto permitirá conocer la evolución de la negociación comercial.
+Los conceptos, cantidades, precios, descuentos, impuestos, moneda, condiciones,
+alcance y fechas de una versión aprobada son inmutables. Cambiarlos crea
+automáticamente una nueva versión Borrador basada en la aprobada.
+
+Una corrección administrativa que no cambie el acuerdo comercial podrá actualizar
+datos de presentación, contacto, dirección, observaciones, ortografía o redacción sin
+crear una versión. Toda corrección deberá conservar qué cambió, valores anteriores y
+nuevos, quién la realizó y cuándo.
+
+La última versión aprobada permanece referenciada como vigente hasta que otra versión
+sea aprobada. Ninguna versión anterior se elimina.
+
+Esto permite reproducir exactamente la evolución de la negociación comercial.
+
+---
+
+# Folio
+
+Cada Organización tendrá una secuencia independiente.
+
+El formato oficial será `COT-000001`.
+
+La asignación será transaccional y segura ante concurrencia.
+
+---
+
+# Persona Cliente
+
+Toda Cotización pertenece a una Persona de la misma Organización con rol Cliente.
+
+Si la Persona todavía no tiene ese rol, la interfaz podrá ofrecer agregarlo mediante
+confirmación explícita. El sistema nunca lo asignará automáticamente.
+
+---
+
+# Cálculos monetarios
+
+Los importes se calculan en servidor usando precisión decimal.
+
+Por concepto:
+
+```text
+base = cantidad × precio unitario
+subtotal = base − descuento
+impuesto = subtotal × tasa de impuesto
+total = subtotal + impuesto
+```
+
+El descuento nunca podrá superar la base. La interfaz mostrará importes redondeados a
+dos decimales.
+
+---
+
+# Aprobación
+
+La aprobación será autorizada y quedará vinculada al OrganizationMember que la realizó,
+no al usuario global.
+
+---
+
+# Vigencia
+
+Cada versión registra fecha de emisión y vencimiento.
+
+Una Cotización activa no aprobada, ya sea Borrador o Enviada, que supere su vencimiento
+cambiará de forma idempotente a Expirada, conservando toda la información.
+
+---
+
+# PDF básico
+
+Durante el Sprint 2 el PDF se genera bajo demanda para una versión e incluye datos de
+Organización, Cliente, conceptos, totales, condiciones y número de versión.
+
+No incluye firma electrónica, correo, plantillas personalizadas, almacenamiento
+histórico ni anexos.
 
 ---
 
@@ -1329,7 +1410,7 @@ Ejemplos.
 
 Una Persona puede tener múltiples Cotizaciones.
 
-Toda Cotización pertenece a una única Persona.
+Toda Cotización pertenece a una única Persona con rol Cliente.
 
 Esta relación nunca cambia.
 
@@ -1349,7 +1430,7 @@ Esto permitirá mantener trazabilidad completa entre el proceso comercial y la e
 
 ## DA-005
 
-Toda Cotización pertenece a una Persona.
+Toda Cotización pertenece a una Persona con rol Cliente.
 
 Estado:
 
@@ -1380,6 +1461,29 @@ Estado:
 ## DA-008
 
 El historial comercial debe conservarse permanentemente.
+
+Estado:
+
+✅ Aprobada.
+
+---
+
+## Q-DA-001
+
+Una versión aprobada conserva inmutable el acuerdo comercial. Los cambios comerciales
+crean una nueva versión Borrador y las correcciones administrativas conservan
+auditoría.
+
+Estado:
+
+✅ Aprobada.
+
+---
+
+## Q-DA-002
+
+Toda Cotización pertenece a una Persona con rol Cliente y su aprobación pertenece a un
+OrganizationMember.
 
 Estado:
 
@@ -2531,7 +2635,7 @@ La Persona permanece.
 
 ## Cotizaciones
 
-Toda Cotización pertenece a una Persona.
+Toda Cotización pertenece a una Persona con rol Cliente.
 
 Una Persona puede tener múltiples Cotizaciones.
 
@@ -2624,7 +2728,7 @@ El orden oficial de implementación será el siguiente.
    inicial de infraestructura.
 2. Sprint 1 — aprobado y congelado: Personas, roles comerciales, contactos,
    integridad multitenant en base de datos y análisis estático.
-3. Sprint 2: Cotizaciones.
+3. Sprint 2 — especificación aprobada, implementación pendiente: Cotizaciones.
 4. Sprint 3: Proyectos y participantes.
 5. Sprint 4: Etapas y Acciones.
 6. Sprint 5: Bitácora y Archivos.

@@ -10,7 +10,8 @@
    inicial de infraestructura.
 2. Sprint 1 — aprobado y congelado: Personas, roles comerciales, contactos,
    restricciones multitenant en base de datos y análisis estático.
-3. Sprint 2: Cotizaciones.
+3. Sprint 2 — especificación aprobada, implementación pendiente: Cotizaciones
+   versionadas, aprobación, expiración y PDF básico.
 4. Sprint 3: Proyectos y participantes.
 5. Sprint 4: Etapas y Acciones.
 6. Sprint 5: Bitácora y Archivos.

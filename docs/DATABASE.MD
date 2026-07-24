@@ -1,6 +1,6 @@
 # ProjectFlow — Base de datos
 
-> Estado: Aprobado para Sprints 0 y 1
+> Estado: Aprobado para Sprints 0, 1 y 2
 > Última actualización: 2026-07-24
 > Motor oficial: MariaDB
 
@@ -22,6 +22,8 @@ Organization
 ├── Role ── Permission
 ├── Person ── PersonRole
 │   └── Quote ── QuoteVersion ── QuoteItem
+│       ├── QuoteVersionRevision
+│       └── QuoteSequence
 └── Project
     ├── ProjectParticipant ── Person
     ├── Stage
@@ -42,6 +44,11 @@ Organization
 - Persona ↔ PersonRole: muchos-a-muchos.
 - Persona → Cotización: uno-a-muchos.
 - Cotización → QuoteVersion: uno-a-muchos.
+- Cotización → QuoteVersion actual: uno-a-uno referenciado.
+- Cotización → QuoteVersion aprobada: uno-a-uno referenciado opcional.
+- QuoteVersion → QuoteItem: uno-a-muchos.
+- QuoteVersion → QuoteVersionRevision: uno-a-muchos.
+- Organización → QuoteSequence: uno-a-uno.
 - Cotización aprobada → Proyecto: uno-a-muchos.
 - Proyecto ↔ Persona: muchos-a-muchos mediante ProjectParticipant.
 - Proyecto → Etapa: uno-a-muchos.
@@ -65,6 +72,9 @@ La definición de columnas, estados, índices únicos y reglas se encuentra en
   al Proyecto y a la misma Organización.
 - Las relaciones entre Personas, Cotizaciones y Proyectos se validan dentro del mismo
   tenant.
+- Quote, QuoteVersion, QuoteItem y QuoteVersionRevision conservan `organization_id`;
+  sus relaciones se refuerzan con claves compuestas para rechazar cruces de tenant.
+- La Persona de Quote debe pertenecer al tenant. Su rol Cliente se valida en la Action.
 - `person_relationships` referencia a cada Persona mediante
   (`organization_id`, `person_id`), por lo que MariaDB rechaza relaciones cruzadas
   incluso si una escritura evita la capa de Laravel.
@@ -73,7 +83,10 @@ La definición de columnas, estados, índices únicos y reglas se encuentra en
 
 ## Eliminación e historial
 
-- Cotizaciones no se eliminan desde la UI; la copia de cada versión aprobada se conserva.
+- Cotizaciones no se eliminan; archived es un estado histórico de solo consulta.
+- Los campos comerciales de QuoteVersion aprobada no se mutan.
+- Las correcciones administrativas conservan antes, después, autor y fecha en
+  QuoteVersionRevision.
 - ActivityEntry admite edición y soft delete con auditoría de cambios.
 - Persona, Proyecto, Acción y File pueden archivarse con soft delete cuando la regla
   funcional lo permita.
@@ -83,6 +96,8 @@ La definición de columnas, estados, índices únicos y reglas se encuentra en
 ## Cálculos
 
 - Valores monetarios: decimal y cálculo en servidor.
+- Cotizaciones conservan precisión decimal interna y se presentan con dos decimales.
+- El descuento de un concepto no supera `quantity × unit_price`.
 - `overdue` es derivado, no estado persistido.
 - Avance de Etapa: acciones completadas entre acciones no canceladas.
 - Avance de Proyecto: suma ponderada por el peso de cada Etapa.
@@ -97,6 +112,8 @@ La definición de columnas, estados, índices únicos y reglas se encuentra en
 - (`organization_id`, `primary_email`) y (`organization_id`, `primary_phone`) para
   búsqueda y advertencias de duplicado.
 - (`organization_id`, `number`) en Cotizaciones.
+- (`quote_id`, `version_number`) único en versiones.
+- (`quote_version_id`, `position`) en conceptos.
 - (`organization_id`, `code`) en Proyectos.
 - (`project_id`, `position`) en Etapas.
 - (`responsible_organization_member_id`, `due_on`, `status`) en Acciones.

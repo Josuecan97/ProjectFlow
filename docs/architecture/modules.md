@@ -15,6 +15,8 @@ Dependencias permitidas:
 - Stages depende de Projects.
 - Projects puede originarse en Quotes y relacionarse con People.
 - Quotes depende de People para identificar su contraparte.
+- Quotes no modifica Personas silenciosamente; agregar el rol Cliente requiere una
+  Action explícita y confirmación de interfaz.
 - People depende únicamente del contexto de Organizations y no de Quotes o Projects.
 - Todos los dominios de negocio dependen del contexto de Organizations.
 

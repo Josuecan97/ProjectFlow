@@ -156,10 +156,15 @@ Estado: ✅ Aprobado para Sprint 1.
 
 ## DT-005
 
-Las Cotizaciones tendrán versiones. Después de aprobar, la Cotización seguirá editable
-mediante una nueva versión y se conservará la copia exacta de lo aprobado.
+Las Cotizaciones tendrán versiones. Draft edita la misma versión. Una versión aprobada
+conserva inmutable su acuerdo comercial; cualquier cambio comercial crea una nueva
+versión Draft. Las correcciones administrativas permitidas no crean versión y
+conservan auditoría de valores, miembro y fecha.
 
-Estado: 🟡 Propuesta.
+La Persona debe tener rol Cliente, el folio es secuencial por Organización y la
+aprobación pertenece a un OrganizationMember.
+
+Estado: ✅ Aprobado el 2026-07-24 para Sprint 2.
 
 ## DT-006
 

@@ -1,6 +1,6 @@
 # ProjectFlow — Especificación Técnica del MVP
 
-> Estado: Implementado para Sprints 0 y 1; decisiones posteriores sujetas a sus ADR
+> Estado: Implementado para Sprints 0 y 1; Cotizaciones aprobadas para Sprint 2
 > Última actualización: 2026-07-23
 > Autoridad funcional: `PROJECT_BIBLE.md`
 
@@ -117,7 +117,7 @@ Permisos mínimos:
 - `members.view`, `members.invite`, `members.update`, `members.remove`
 - `roles.view`, `roles.manage`
 - `people.view`, `people.create`, `people.update`, `people.archive`
-- `quotes.view`, `quotes.create`, `quotes.update`, `quotes.approve`, `quotes.cancel`
+- `quotes.view`, `quotes.create`, `quotes.update`, `quotes.approve`, `quotes.archive`
 - `projects.view`, `projects.create`, `projects.update`, `projects.change_status`
 - `stages.manage`
 - `actions.view`, `actions.create`, `actions.update`, `actions.complete`
@@ -224,29 +224,74 @@ Un contacto también es una Persona; no se crea otra entidad.
 `quotes`
 
 - `id`, `organization_id`, `person_id`
-- `number`, `title`, `status`
-- `issued_on`, `expires_on`, `currency`
-- `approved_version_id`, `approved_at`, `approved_by`
+- `number`, `status`
+- `current_version_id`, `approved_version_id`
+- `approved_at`, `approved_by_organization_member_id`
 - timestamps y unique (`organization_id`, `number`)
 
-Estados: draft, sent, under_review, approved, rejected, cancelled.
+Estados: draft, sent, approved, rejected, expired, archived.
 
 `quote_versions`
 
-- `quote_id`, `version_number`, `description`
+- `id`, `organization_id`, `quote_id`, `version_number`, `status`
+- `title`, `description`, `scope`, `terms`, `notes`
+- `issued_on`, `expires_on`, `currency`
+- instantánea administrativa: `client_name`, `contact_name`, `contact_email`,
+  `contact_phone`, `client_address`
 - `subtotal`, `discount_total`, `tax_total`, `total`
-- `terms`, `notes`, `created_by`, `approved_at`, timestamps
+- `created_by_organization_member_id`, `approved_at`
+- timestamps y unique (`quote_id`, `version_number`)
+
+Estados de versión: draft, sent, approved, rejected y expired. `archived` pertenece a
+la Cotización agregada.
 
 `quote_items`
 
-- `quote_version_id`, `position`, `name`, `description`
+- `id`, `organization_id`, `quote_version_id`, `position`, `name`, `description`
 - `quantity`, `unit`, `unit_price`, `discount_amount`, `tax_rate`
 - `subtotal`, `tax_amount`, `total`, timestamps
 
-Los totales se calculan en servidor. Aprobar una versión congela una copia de lo
-aceptado, pero la Cotización continúa siendo editable. Editar después de aprobar crea
-una nueva versión y conserva la versión aprobada anterior para trazabilidad. La
-Cotización no se elimina y puede originar varios Proyectos.
+`quote_version_revisions`
+
+- `id`, `organization_id`, `quote_version_id`
+- `changed_by_organization_member_id`, `type`: administrative_correction
+- `before_values`, `after_values` JSON, `created_at`
+
+`quote_sequences`
+
+- `organization_id` como clave única
+- `last_number`, timestamps
+
+El folio usa `COT-000001` y se obtiene bloqueando transaccionalmente la secuencia de la
+Organización. No se calcula mediante `MAX`.
+
+Los totales se calculan en servidor con decimal:
+
+```text
+base = quantity × unit_price
+subtotal = base − discount_amount
+tax_amount = subtotal × tax_rate / 100
+total = subtotal + tax_amount
+```
+
+El descuento no puede superar la base. Cantidades usan hasta cuatro decimales, tasas
+hasta cuatro y los importes calculados conservan seis decimales. Las operaciones no
+usan `float`; el redondeo visible a dos decimales utiliza half-up y no modifica el
+valor interno.
+
+La misma versión se edita mientras esté draft. Aprobarla congela sus campos
+comerciales. Una corrección administrativa permitida actualiza únicamente datos de
+presentación y siempre crea QuoteVersionRevision. Cambiar conceptos, cantidades,
+precios, descuentos, impuestos, moneda, condiciones, alcance o vigencia crea una nueva
+versión draft a partir de la aprobada. `approved_version_id` conserva la última versión
+aceptada y `current_version_id` la versión de trabajo.
+
+Toda Cotización pertenece a una Persona activa del mismo tenant con rol `client`. El
+rol puede agregarse solo mediante confirmación explícita. La aprobación registra al
+OrganizationMember. La Cotización no se elimina y puede originar varios Proyectos.
+
+Una Cotización activa en draft o sent cambia idempotentemente a expired cuando su
+versión vigente supera `expires_on` sin aprobación.
 
 ### 7.4 Proyectos y participantes
 
@@ -391,8 +436,9 @@ Los efectos externos serán Jobs idempotentes y reintentables.
 
 Los estados se implementarán con Enums y transiciones explícitas:
 
-- Cotización: draft → sent → under_review → approved/rejected; también cancelación
-  antes de aprobar.
+- Cotización: draft → sent → approved/rejected; draft o sent → expired. Puede
+  archivarse; un cambio comercial posterior a aprobación crea una versión draft sin
+  modificar la aprobada.
 - Proyecto: draft → pending → in_progress → completed → delivered.
 - Proyecto activo puede pausarse y regresar a in_progress.
 - Etapa: pending → in_progress → paused/completed/cancelled.
@@ -404,6 +450,7 @@ estado serán transaccionales. Los eventos se despacharán después del commit.
 Eventos iniciales:
 
 - `QuoteApproved`
+- `QuoteExpired`
 - `ProjectCreated`
 - `ProjectStatusChanged`
 - `StageCompleted`
@@ -436,6 +483,7 @@ Feature:
 - Policies por rol.
 - Flujos principales de cada módulo.
 - Edición versionada de Cotización aprobada y CRUD autorizado de Bitácora.
+- Correcciones administrativas auditadas y expiración de Cotizaciones.
 - Conversión en uno o varios Proyectos.
 - Portal, expiración, rotación y revocación.
 - Automatizaciones e idempotencia.
@@ -461,7 +509,8 @@ documentación actualizada y todas las verificaciones pasan.
 1. Sprint 0: plataforma, MariaDB, autenticación, tenancy, equipo, RBAC, membresía
    comercial y Dashboard inicial de infraestructura.
 2. Sprint 1: Personas, roles comerciales y contactos.
-3. Sprint 2: Cotizaciones, versiones, conceptos, aprobación y PDF básico.
+3. Sprint 2: Cotizaciones, versiones, conceptos, aprobación, auditoría administrativa,
+   expiración y PDF básico.
 4. Sprint 3: Proyectos, conversión, participantes, estados y salud.
 5. Sprint 4: Etapas, pesos, Acciones, dependencias y avance.
 6. Sprint 5: Bitácora, adjuntos, visibilidad y archivos.
@@ -483,8 +532,7 @@ de datos entre organizaciones.
 3. Usuario global como miembro interno de varias organizaciones.
 4. Múltiples roles por miembro interno y roles iniciales propuestos.
 5. Contactos modelados también como Personas.
-6. La Cotización aprobada sigue editable creando nuevas versiones y conserva la copia
-   de lo aprobado.
+6. Reemplazado por las decisiones aprobadas para Sprint 2.
 7. Fórmula de avance definida aquí.
 8. Vencimiento calculado, no almacenado como estado.
 9. Bitácora editable y borrable con permisos, soft delete e historial de cambios.
@@ -509,3 +557,16 @@ de datos entre organizaciones.
 - El RFC es único por Organización cuando exista.
 - Coincidencias de correo o teléfono generan advertencias de duplicado, no bloqueo.
 - Archivar usa soft delete y conserva las relaciones.
+
+## 17. Decisiones aprobadas para Sprint 2
+
+- Estados: draft, sent, approved, rejected, expired y archived.
+- Una versión draft se edita sin generar versiones adicionales.
+- Los campos comerciales de una versión aprobada son inmutables.
+- Una corrección administrativa permitida no crea versión y conserva revisión técnica.
+- Un cambio comercial posterior a aprobación crea una nueva versión draft.
+- Folio `COT-000001` secuencial, transaccional y único por Organización.
+- La Persona asociada debe tener rol Cliente; agregarlo exige confirmación.
+- La aprobación pertenece a un OrganizationMember.
+- La expiración conserva íntegramente el historial.
+- El PDF básico se genera bajo demanda y no se almacena.

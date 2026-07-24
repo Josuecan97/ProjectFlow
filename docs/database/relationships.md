@@ -1,6 +1,6 @@
 # Relationships
 
-> Estado: Aprobado para Sprints 0 y 1
+> Estado: Aprobado para Sprints 0, 1 y 2
 > Última actualización: 2026-07-24
 
 ```text
@@ -10,6 +10,8 @@ Organization 1─* OrganizationSubscription 1─* OrganizationSubscriptionEvent
 Organization 1─* Person *─* PersonRole
 Person 1─* PersonRelationship *─1 Person
 Person 1─* Quote 1─* QuoteVersion 1─* QuoteItem
+Organization 1─1 QuoteSequence
+QuoteVersion 1─* QuoteVersionRevision
 Quote 1─* Project
 Project *─* Person (ProjectParticipant)
 Project 1─* Stage 1─* Action
@@ -29,6 +31,9 @@ Reglas esenciales:
 - Una Persona moral puede tener varios contactos y solo uno principal.
 - Toda Acción requiere Etapa y Proyecto coherentes.
 - Cotización aprobada puede originar varios Proyectos.
+- Quote referencia una versión actual y opcionalmente una aprobada.
+- Las tablas del agregado Quote incluyen tenant y sus relaciones impiden cruces de
+  Organización a nivel de base de datos.
 - Participantes externos son Personas; responsables internos son OrganizationMembers.
 - FileAttachment solo acepta tipos permitidos por una lista explícita.
 - Solo puede existir un Portal activo por Proyecto.

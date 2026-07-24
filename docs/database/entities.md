@@ -1,6 +1,6 @@
 # Entities
 
-> Estado: Aprobado para Sprints 0 y 1
+> Estado: Aprobado para Sprints 0, 1 y 2
 > Última actualización: 2026-07-24
 
 Entidades del MVP:
@@ -8,7 +8,7 @@ Entidades del MVP:
 - Organization, User, OrganizationMember, Role, Permission.
 - OrganizationSubscription y OrganizationSubscriptionEvent.
 - Person, PersonRole, PersonRelationship.
-- Quote, QuoteVersion, QuoteItem.
+- Quote, QuoteVersion, QuoteItem, QuoteVersionRevision y QuoteSequence.
 - Project, ProjectParticipant.
 - Stage, Action, ActionDependency.
 - ActivityEntry y ActivityEntryRevision.

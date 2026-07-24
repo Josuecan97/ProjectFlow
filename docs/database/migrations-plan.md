@@ -1,6 +1,6 @@
 # Migrations Plan
 
-> Estado: Aprobado para Sprints 0 y 1
+> Estado: Aprobado para Sprints 0, 1 y 2
 > Última actualización: 2026-07-24
 
 Orden de migraciones:
@@ -9,8 +9,9 @@ Orden de migraciones:
 2. organization_members, roles, permissions y pivotes.
 3. organization_subscriptions y organization_subscription_events.
 4. people, person_roles, person_role, person_relationships — Sprint 1.
-5. quotes.
-6. quote_versions y quote_items; después FK de approved_version.
+5. quote_sequences y quotes.
+6. quote_versions, quote_items y quote_version_revisions; después FKs de
+   current_version y approved_version.
 7. projects y project_participants.
 8. stages.
 9. actions y action_dependencies.

@@ -2,7 +2,7 @@
 
 > Última actualización: 2026-07-24
 > Proyecto: ProjectFlow
-> Estado: Sprint 1 — Personas completado; esperando aprobación para Sprint 2
+> Estado: Sprint 2 — especificación de Cotizaciones aprobada; implementación pendiente
 
 ---
 
@@ -97,8 +97,9 @@ Servicios preparados
 Sprint 0 está completado e incluye plataforma, autenticación, Organizaciones, equipo,
 invitaciones, roles, permisos, membresía comercial y Dashboard inicial.
 
-Sprint 1 completó Personas, roles comerciales y contactos. Cotizaciones será Sprint 2
-y no debe iniciarse sin aprobación del Product Owner.
+Sprint 1 completó Personas, roles comerciales y contactos. Sprint 2 corresponde a
+Cotizaciones. Sus reglas funcionales fueron aprobadas; la implementación no comienza
+hasta aprobar la actualización documental.
 
 ProjectFlow utiliza Trunk-Based Development. `main` es la única rama estable; toda
 implementación usa ramas pequeñas y Pull Requests. La auditoría precede al merge y los

@@ -12,6 +12,7 @@ de Organización, evitando grafos completos de modelos serializados.
 ## Catálogo inicial
 
 - `QuoteApproved`
+- `QuoteExpired`
 - `ProjectCreated`
 - `ProjectStatusChanged`
 - `StageCompleted`

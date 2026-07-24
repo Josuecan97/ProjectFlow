@@ -66,6 +66,8 @@ tenant. Jobs y comandos reciben la organización explícitamente.
 - Ninguna regla de negocio importante dentro de componentes Livewire.
 - Form Requests o validación equivalente y Policies en toda mutación.
 - Tipado estricto, nombres descriptivos y sin abreviaturas innecesarias.
+- Las versiones aprobadas son snapshots comerciales; las correcciones administrativas
+  usan una Action y una revisión técnica separadas.
 
 ## Seguridad
 
@@ -87,4 +89,4 @@ una necesidad observable.
 - `MVP_TECHNICAL_SPEC.md`
 - `DATABASE.MD`
 - `architecture/permissions.md`
-- ADR-001 a ADR-004
+- ADR-001 a ADR-008 según el módulo afectado

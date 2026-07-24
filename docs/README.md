@@ -49,5 +49,6 @@ Antes de implementar cualquier funcionalidad:
 ## Autoridad documental
 
 `PROJECT_BIBLE.md` contiene las decisiones funcionales. `MVP_TECHNICAL_SPEC.md`
-contiene la especificación aprobada para los Sprints 0 y 1; las secciones posteriores
-siguen sujetas a sus ADR. Los ADR registran decisiones individuales y sus consecuencias.
+contiene la especificación implementada para los Sprints 0 y 1 y la especificación
+aprobada de Cotizaciones para Sprint 2; las secciones posteriores siguen sujetas a sus
+ADR. Los ADR registran decisiones individuales y sus consecuencias.

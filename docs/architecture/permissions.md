@@ -36,5 +36,10 @@ puede escribir o se encuentra en modo de solo lectura.
 Personas utiliza `people.view`, `people.create`, `people.update` y `people.archive`.
 Asignar roles comerciales o contactos requiere `people.update`.
 
+Cotizaciones utiliza `quotes.view`, `quotes.create`, `quotes.update`,
+`quotes.approve` y `quotes.archive`. Enviar, rechazar, generar una revisión comercial
+y realizar correcciones administrativas requiere `quotes.update`. Aprobar requiere
+`quotes.approve`.
+
 Toda Policy debe incluir pruebas de permitido, denegado por permiso y denegado por
 Organización diferente.
