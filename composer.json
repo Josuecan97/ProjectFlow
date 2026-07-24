@@ -9,6 +9,7 @@
     ],
     "license": "MIT",
     "require": {
+        "brick/math": "^0.18",
         "php": "^8.4",
         "laravel/framework": "^13.8",
         "laravel/tinker": "^3.0",

@@ -1,7 +1,7 @@
 # ProjectFlow — Arquitectura
 
-> Estado: Propuesta para aprobación
-> Última actualización: 2026-07-23
+> Estado: Aprobado
+> Última actualización: 2026-07-24
 
 ## Objetivo
 
@@ -16,6 +16,7 @@ aislamiento entre organizaciones, claridad y capacidad de evolución.
 - Tailwind CSS 4 y Vite 8
 - MariaDB
 - Pest
+- Brick Math para aritmética decimal monetaria sin `float`
 
 Redis, Horizon, Reverb y S3 quedan preparados, pero no son dependencias operativas
 obligatorias del primer despliegue.
