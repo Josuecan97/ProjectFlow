@@ -74,3 +74,19 @@ Volt::route('/people/{person}/edit', 'people.edit')
 Volt::route('/people/{person}', 'people.show')
     ->middleware(['auth', 'verified', 'organization'])
     ->name('people.show');
+
+Volt::route('/quotes', 'quotes.index')
+    ->middleware(['auth', 'verified', 'organization'])
+    ->name('quotes.index');
+Volt::route('/quotes/create', 'quotes.form')
+    ->middleware(['auth', 'verified', 'organization'])
+    ->name('quotes.create');
+Volt::route('/quotes/{quote}/edit', 'quotes.form')
+    ->middleware(['auth', 'verified', 'organization'])
+    ->name('quotes.edit');
+Volt::route('/quotes/{quote}/revise', 'quotes.form')
+    ->middleware(['auth', 'verified', 'organization'])
+    ->name('quotes.revise');
+Volt::route('/quotes/{quote}', 'quotes.show')
+    ->middleware(['auth', 'verified', 'organization'])
+    ->name('quotes.show');

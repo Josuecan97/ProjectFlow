@@ -33,6 +33,11 @@
                                 {{ __('Personas') }}
                             </flux:button>
                         @endcan
+                        @can('viewAny', [\App\Domain\Quotes\Models\Quote::class, $currentOrganization->get()])
+                            <flux:button href="{{ route('quotes.index') }}" variant="ghost" size="sm">
+                                {{ __('Cotizaciones') }}
+                            </flux:button>
+                        @endcan
                     @endif
                     <flux:button href="{{ route('profile.edit') }}" variant="ghost" size="sm">
                         {{ __('Perfil') }}
