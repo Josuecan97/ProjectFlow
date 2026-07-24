@@ -7,6 +7,7 @@ namespace App\Domain\Quotes\Models;
 use App\Domain\Organizations\Models\Organization;
 use App\Domain\Organizations\Models\OrganizationMember;
 use App\Domain\Quotes\Enums\QuoteVersionStatus;
+use Carbon\CarbonImmutable;
 use Database\Factories\QuoteVersionFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -16,6 +17,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @property QuoteVersionStatus $status
+ * @property CarbonImmutable $issued_on
+ * @property CarbonImmutable $expires_on
+ * @property CarbonImmutable|null $approved_at
  * @property-read Organization $organization
  * @property-read Quote $quote
  */

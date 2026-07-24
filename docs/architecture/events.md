@@ -1,7 +1,7 @@
 # Events
 
-> Estado: Propuesta para aprobación
-> Última actualización: 2026-07-23
+> Estado: Aprobado
+> Última actualización: 2026-07-24
 
 ## Principios
 
