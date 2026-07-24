@@ -2,8 +2,9 @@
 
 ## Estado
 
-Auditoría completada el 24 de julio de 2026. El Sprint está implementado y validado,
-pero no está cerrado oficialmente. No se creó tag ni release.
+Auditoría completada el 24 de julio de 2026. El Product Owner aprobó posteriormente el
+Sprint y la decisión de conservar los datos vigentes de la Organización en el PDF. El
+cierre se publica como `v0.2.0`.
 
 ## Alcance auditado
 
@@ -97,19 +98,16 @@ de Composer.
 
 ## Riesgos pendientes
 
-### Requiere decisión del Product Owner
+### Decisión resuelta por el Product Owner
 
 El PDF usa el snapshot histórico del Cliente almacenado en QuoteVersion, pero muestra
 los datos actuales de la Organización. La documentación aprobada exige incluir datos
 de la Organización, pero no ordena congelarlos.
 
-Agregar un snapshot de la Organización mejoraría la reproducción histórica, pero
-modificaría el modelo de datos y la regla de versionado. No se implementó
-silenciosamente. Debe decidirse si:
-
-- se conserva el comportamiento actual para el MVP; o
-- se agregan nombre legal, RFC, contacto y dirección de la Organización al snapshot
-  de QuoteVersion antes del cierre.
+Para el MVP se conserva el comportamiento actual: QuoteVersion mantiene el snapshot
+del Cliente y el PDF obtiene los datos vigentes de la Organización. No se modifica el
+modelo de datos. El snapshot de identidad de la Organización queda como posible mejora
+futura si surge una necesidad funcional.
 
 ### Operativos
 
@@ -143,5 +141,5 @@ El detalle por bloque está disponible en:
 ## Conclusión
 
 La implementación cumple el alcance aprobado del Sprint 2 y no presenta errores
-técnicos conocidos que impidan su uso. El cierre oficial, tag y release permanecen
-pendientes de aprobación explícita.
+técnicos conocidos que impidan su uso. El Sprint fue aprobado para publicación como
+`v0.2.0`.

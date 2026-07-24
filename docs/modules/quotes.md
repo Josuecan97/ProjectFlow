@@ -1,6 +1,6 @@
 # Cotizaciones
 
-> Estado: Implementado y auditado; cierre del Sprint 2 pendiente de aprobación
+> Estado: Aprobado y estable — v0.2.0
 > Última actualización: 2026-07-24
 
 ## Responsabilidad

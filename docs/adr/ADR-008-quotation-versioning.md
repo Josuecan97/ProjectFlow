@@ -23,12 +23,17 @@ QuoteItem sus conceptos.
 - Vigencia, moneda, alcance, condiciones, instantánea del cliente y totales viven en
   QuoteVersion porque forman parte del acuerdo reproducible.
 - El folio utiliza QuoteSequence por Organización con bloqueo transaccional.
+- QuoteVersion conserva el snapshot histórico del Cliente.
+- Para el MVP, el PDF utiliza los datos vigentes de la Organización. No se almacena
+  un snapshot histórico de la identidad de la Organización.
 
 ## Alternativas descartadas
 
 - Sobrescribir la versión aprobada: destruye el acuerdo aceptado.
 - Crear versión en cada tecla o guardado de Draft: genera ruido sin valor comercial.
 - Guardar solo los datos actuales de Persona: impide reproducir el documento histórico.
+- Versionar la identidad de la Organización durante el MVP: agrega complejidad sin una
+  necesidad funcional validada.
 - Usar `MAX(number)`: no es seguro ante concurrencia.
 - Auditoría genérica sin campos permitidos: facilita cambios comerciales encubiertos.
 

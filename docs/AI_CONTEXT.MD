@@ -2,7 +2,7 @@
 
 > Última actualización: 2026-07-24
 > Proyecto: ProjectFlow
-> Estado: Sprint 2 implementado y auditado; cierre pendiente de aprobación
+> Estado: Sprint 2 aprobado y cerrado — v0.2.0
 
 ---
 
@@ -102,10 +102,9 @@ Servicios preparados
 Sprint 0 está completado e incluye plataforma, autenticación, Organizaciones, equipo,
 invitaciones, roles, permisos, membresía comercial y Dashboard inicial.
 
-Sprint 1 completó Personas, roles comerciales y contactos. Sprint 2 implementó
-Cotizaciones versionadas, workflow, expiración, auditoría administrativa, interfaz y
-PDF bajo demanda. Su implementación y auditoría están completas; falta la aprobación
-formal del Product Owner para cerrar el Sprint y crear el tag correspondiente.
+Sprint 1 completó Personas, roles comerciales y contactos. Sprint 2, publicado como
+`v0.2.0`, incorporó Cotizaciones versionadas, workflow, expiración, auditoría
+administrativa, interfaz y PDF bajo demanda. El Sprint 3 permanece sin iniciar.
 
 ProjectFlow utiliza Trunk-Based Development. `main` es la única rama estable; toda
 implementación usa ramas pequeñas y Pull Requests. La auditoría precede al merge y los
