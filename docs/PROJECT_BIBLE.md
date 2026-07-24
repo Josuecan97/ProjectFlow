@@ -2707,3 +2707,5 @@ del Product Owner antes de comenzar la implementación.
 - ADR (Architecture Decision Records).
 - Convenciones de desarrollo.
 - Estrategia de pruebas.
+
+JJJJJ
