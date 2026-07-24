@@ -1,6 +1,6 @@
 # Cotizaciones
 
-> Estado: Especificación funcional aprobada
+> Estado: Implementado y auditado; cierre del Sprint 2 pendiente de aprobación
 > Última actualización: 2026-07-24
 
 ## Responsabilidad

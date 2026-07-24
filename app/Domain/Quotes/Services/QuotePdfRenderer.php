@@ -10,6 +10,8 @@ use Dompdf\Options;
 
 final class QuotePdfRenderer
 {
+    public function __construct(private readonly QuoteCalculator $calculator) {}
+
     public function render(QuoteVersion $version): string
     {
         $options = new Options;
@@ -23,7 +25,7 @@ final class QuotePdfRenderer
             'version' => $version,
             'quote' => $version->quote,
             'organization' => $version->organization,
-            'calculator' => app(QuoteCalculator::class),
+            'calculator' => $this->calculator,
         ])->render(), 'UTF-8');
         $dompdf->render();
 

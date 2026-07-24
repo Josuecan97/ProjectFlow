@@ -17,6 +17,11 @@ final class AdministrativeCorrectionRules
             'contact_email' => ['sometimes', 'nullable', 'email:rfc', 'max:255'],
             'contact_phone' => ['sometimes', 'nullable', 'string', 'max:30'],
             'client_address' => ['sometimes', 'nullable', 'array'],
+            'client_address.street' => ['nullable', 'string', 'max:255'],
+            'client_address.city' => ['nullable', 'string', 'max:120'],
+            'client_address.state' => ['nullable', 'string', 'max:120'],
+            'client_address.postal_code' => ['nullable', 'string', 'max:12'],
+            'client_address.country' => ['nullable', 'string', 'size:2', 'alpha:ascii'],
             'notes' => ['sometimes', 'nullable', 'string', 'max:5000'],
         ];
     }
@@ -26,6 +31,13 @@ final class AdministrativeCorrectionRules
      */
     public static function fields(): array
     {
-        return array_keys(self::rules());
+        return [
+            'client_name',
+            'contact_name',
+            'contact_email',
+            'contact_phone',
+            'client_address',
+            'notes',
+        ];
     }
 }

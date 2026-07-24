@@ -2728,7 +2728,8 @@ El orden oficial de implementación será el siguiente.
    inicial de infraestructura.
 2. Sprint 1 — aprobado y congelado: Personas, roles comerciales, contactos,
    integridad multitenant en base de datos y análisis estático.
-3. Sprint 2 — especificación aprobada, implementación pendiente: Cotizaciones.
+3. Sprint 2 — implementación y auditoría completadas; cierre pendiente de aprobación:
+   Cotizaciones.
 4. Sprint 3: Proyectos y participantes.
 5. Sprint 4: Etapas y Acciones.
 6. Sprint 5: Bitácora y Archivos.

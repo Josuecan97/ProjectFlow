@@ -1,7 +1,8 @@
 # Sprint 02 — Cotizaciones
 
-> Estado: Especificación aprobada; implementación pendiente de autorización
+> Estado: Implementación y auditoría completadas; cierre pendiente de aprobación
 > Inicio documental: 2026-07-24
+> Implementación: 2026-07-24
 
 ## Objetivo
 

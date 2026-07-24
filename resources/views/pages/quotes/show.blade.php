@@ -94,8 +94,7 @@ new #[Layout('components.layouts.app')] class extends Component
             'person',
             'currentVersion.items',
             'approvedVersion.revisions.changedBy.user',
-            'versions.items',
-            'versions.createdBy.user',
+            'versions',
         ]);
     }
 
@@ -225,6 +224,13 @@ new #[Layout('components.layouts.app')] class extends Component
                 <flux:input wire:model="contact_email" type="email" :label="__('Correo')" />
                 <flux:input wire:model="contact_phone" :label="__('Teléfono')" />
                 <flux:textarea wire:model="notes" :label="__('Observaciones')" rows="2" />
+                <div class="md:col-span-2 grid gap-4 rounded-lg bg-zinc-50 p-4 md:grid-cols-2 dark:bg-zinc-950">
+                    <flux:input wire:model="client_address.street" :label="__('Calle')" />
+                    <flux:input wire:model="client_address.city" :label="__('Ciudad')" />
+                    <flux:input wire:model="client_address.state" :label="__('Estado')" />
+                    <flux:input wire:model="client_address.postal_code" :label="__('Código postal')" />
+                    <flux:input wire:model="client_address.country" :label="__('País')" maxlength="2" />
+                </div>
                 <div class="flex items-end justify-end"><flux:button type="submit">{{ __('Registrar corrección') }}</flux:button></div>
             </form>
             @if ($quote->approvedVersion->revisions->isNotEmpty())
