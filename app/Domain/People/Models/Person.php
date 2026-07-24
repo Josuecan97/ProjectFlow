@@ -5,6 +5,7 @@ namespace App\Domain\People\Models;
 use App\Domain\Organizations\Models\Organization;
 use App\Domain\People\Enums\PersonStatus;
 use App\Domain\People\Enums\PersonType;
+use App\Domain\Quotes\Models\Quote;
 use Database\Factories\PersonFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Builder;
@@ -76,6 +77,12 @@ final class Person extends Model
     public function contactFor(): HasMany
     {
         return $this->hasMany(PersonRelationship::class, 'related_person_id');
+    }
+
+    /** @return HasMany<Quote, $this> */
+    public function quotes(): HasMany
+    {
+        return $this->hasMany(Quote::class);
     }
 
     public function scopeForOrganization(Builder $query, Organization|int $organization): Builder

@@ -3,6 +3,8 @@
 namespace App\Domain\Organizations\Models;
 
 use App\Domain\People\Models\Person;
+use App\Domain\Quotes\Models\Quote;
+use App\Domain\Quotes\Models\QuoteSequence;
 use App\Models\User;
 use Database\Factories\OrganizationFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
@@ -81,5 +83,17 @@ final class Organization extends Model
     public function people(): HasMany
     {
         return $this->hasMany(Person::class);
+    }
+
+    /** @return HasMany<Quote, $this> */
+    public function quotes(): HasMany
+    {
+        return $this->hasMany(Quote::class);
+    }
+
+    /** @return HasOne<QuoteSequence, $this> */
+    public function quoteSequence(): HasOne
+    {
+        return $this->hasOne(QuoteSequence::class);
     }
 }

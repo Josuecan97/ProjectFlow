@@ -27,7 +27,7 @@ final class AccessControlSeeder extends Seeder
         'quotes.create' => 'Crear cotizaciones',
         'quotes.update' => 'Actualizar cotizaciones',
         'quotes.approve' => 'Aprobar cotizaciones',
-        'quotes.cancel' => 'Cancelar cotizaciones',
+        'quotes.archive' => 'Archivar cotizaciones',
         'projects.view' => 'Consultar proyectos',
         'projects.create' => 'Crear proyectos',
         'projects.update' => 'Actualizar proyectos',
@@ -56,6 +56,8 @@ final class AccessControlSeeder extends Seeder
 
     public function run(): void
     {
+        Permission::query()->where('code', 'quotes.cancel')->delete();
+
         $permissions = collect(self::PERMISSIONS)
             ->map(fn (string $description, string $code): Permission => Permission::query()->updateOrCreate(
                 ['code' => $code],
