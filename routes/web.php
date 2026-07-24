@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\EmailVerificationController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\Quotes\QuotePdfController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
@@ -87,6 +88,9 @@ Volt::route('/quotes/{quote}/edit', 'quotes.form')
 Volt::route('/quotes/{quote}/revise', 'quotes.form')
     ->middleware(['auth', 'verified', 'organization'])
     ->name('quotes.revise');
+Route::get('/quotes/{quote}/versions/{quoteVersion}/pdf', QuotePdfController::class)
+    ->middleware(['auth', 'verified', 'organization'])
+    ->name('quotes.versions.pdf');
 Volt::route('/quotes/{quote}', 'quotes.show')
     ->middleware(['auth', 'verified', 'organization'])
     ->name('quotes.show');

@@ -17,6 +17,7 @@ aislamiento entre organizaciones, claridad y capacidad de evolución.
 - MariaDB
 - Pest
 - Brick Math para aritmética decimal monetaria sin `float`
+- Dompdf para documentos PDF generados bajo demanda
 
 Redis, Horizon, Reverb y S3 quedan preparados, pero no son dependencias operativas
 obligatorias del primer despliegue.

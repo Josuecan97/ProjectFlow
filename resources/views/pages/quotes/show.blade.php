@@ -145,6 +145,7 @@ new #[Layout('components.layouts.app')] class extends Component
             @if ($canArchive && $quote->status !== QuoteStatus::Archived)
                 <flux:button wire:click="archive" wire:confirm="{{ __('¿Archivar esta cotización?') }}">{{ __('Archivar') }}</flux:button>
             @endif
+            <flux:button href="{{ route('quotes.versions.pdf', [$quote, $quote->currentVersion]) }}" target="_blank">{{ __('Ver PDF') }}</flux:button>
             <flux:button href="{{ route('quotes.index') }}" variant="ghost">{{ __('Volver') }}</flux:button>
         </div>
     </div>
