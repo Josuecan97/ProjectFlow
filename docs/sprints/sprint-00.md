@@ -1,24 +1,39 @@
-# Sprint 00
+# Sprint 00 — Fundaciones
 
-> Estado: Draft
-> Última actualización: 2026-07-21
+> Estado: Completado
+> Inicio: 2026-07-23
+> Finalización: 2026-07-23
 
 ## Objetivo
 
-Definir la documentación oficial del Sprint 00.
+Dejar una aplicación navegable, segura y verificable sobre la que se construirán los
+módulos de negocio.
 
-## Propósito
+## Alcance
 
-Este documento servirá como referencia para organizar alcance, prioridades y seguimiento del Sprint 00.
+- Laravel, PHP, MariaDB, Livewire, Volt, Flux UI, Tailwind y Vite.
+- Registro, login, recuperación, verificación de correo y logout.
+- Layout, navegación, dashboard inicial y perfil.
+- Organización, configuración y selector.
+- Aislamiento completo entre Organizaciones.
+- OrganizationMembers, invitaciones, activación, suspensión y soft delete.
+- Roles, permisos y Policies.
+- OrganizationSubscription, prueba automática de 14 días e historial.
+- Acceso completo durante prueba y solo lectura al vencer.
+- Pantallas de Organización, miembros, roles y suscripción.
+- Migraciones, modelos, relaciones, Enums, validaciones, factories y seeders.
 
-## Secciones principales
+## Criterios de aceptación
 
-- Objetivos
-- Alcance
-- Entregables
-- Riesgos
-- Pendientes
+- Autenticación completa.
+- Un usuario puede pertenecer a varias Organizaciones.
+- No existe acceso cruzado.
+- Roles y permisos controlan cada operación.
+- Crear una Organización genera su prueba de 14 días.
+- La expiración bloquea mutaciones y conserva consultas.
+- Migraciones ejecutan desde cero.
+- Composer, Artisan, pruebas, Pint y build frontend pasan.
 
-## Nota
+## Fuera de alcance
 
-Este documento será completado durante el desarrollo.
+Personas, Cotizaciones, Proyectos, Etapas, Acciones, Bitácora y Portal del Cliente.

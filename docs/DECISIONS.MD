@@ -121,3 +121,79 @@ Cada decisión debe incluir:
 - Descripción
 - Justificación
 - Estado
+
+---
+
+# Propuestas técnicas pendientes de aprobación
+
+Estas decisiones no se consideran congeladas hasta la aprobación del Product Owner.
+
+## DT-001
+
+Laravel 13, PHP 8.4+, Livewire/Volt/Flux compatibles y MariaDB serán el stack del MVP.
+
+Estado: ✅ Aprobado e implementado en Sprint 0.
+
+## DT-002
+
+El multitenancy utilizará una base compartida con `organization_id`, contexto de tenant,
+scopes, Policies y pruebas de aislamiento.
+
+Estado: ✅ Aprobado e implementado en Sprint 0.
+
+## DT-003
+
+El usuario será global y su acceso se modelará mediante OrganizationMember, Roles y
+Permissions.
+
+Estado: ✅ Aprobado e implementado en Sprint 0.
+
+## DT-004
+
+Los contactos de Personas Morales también serán Personas.
+
+Estado: ✅ Aprobado para Sprint 1.
+
+## DT-005
+
+Las Cotizaciones tendrán versiones. Después de aprobar, la Cotización seguirá editable
+mediante una nueva versión y se conservará la copia exacta de lo aprobado.
+
+Estado: 🟡 Propuesta.
+
+## DT-006
+
+El avance del Proyecto será la suma ponderada del avance de sus Etapas; el avance de
+una Etapa dependerá de sus Acciones no canceladas.
+
+Estado: 🟡 Propuesta.
+
+## DT-007
+
+El Portal almacenará únicamente el hash de un token revocable, rotable y opcionalmente
+expirable.
+
+Estado: 🟡 Propuesta.
+
+## DT-008
+
+Las Automatizaciones del MVP estarán limitadas a un catálogo predefinido.
+
+Estado: 🟡 Propuesta.
+
+## DT-009
+
+Miembros internos y membresías comerciales son conceptos diferentes:
+`OrganizationMember` y `OrganizationSubscription`.
+
+Toda Organización recibe una prueba automática de 14 días con acceso completo. Al
+vencer, queda en modo de solo lectura.
+
+Estado: ✅ Aprobado.
+
+## DT-010
+
+Personas se adelanta oficialmente al Sprint 1. Los Sprints posteriores se recorren una
+posición y el Dashboard de negocio con estabilización queda en Sprint 7.
+
+Estado: ✅ Aprobado el 2026-07-24.

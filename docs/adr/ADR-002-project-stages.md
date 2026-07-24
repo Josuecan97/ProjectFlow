@@ -1,24 +1,35 @@
-# ADR-002: Project Stages
+# ADR-002: Etapas, Acciones y cálculo de avance
 
-> Estado: Draft
-> Última actualización: 2026-07-21
+> Estado: Propuesta para aprobación
+> Fecha: 2026-07-23
 
-## Objetivo
+## Contexto
 
-Registrar la decisión arquitectónica relacionada con Project Stages.
+ProjectFlow necesita separar planeación de alto nivel y trabajo pendiente, y calcular
+el avance sin captura manual.
 
-## Propósito
+## Decisión
 
-Este documento servirá como referencia para documentar contexto, alternativas y consecuencias de la decisión cuando corresponda.
+Todo Proyecto tendrá Etapas ponderadas y toda Acción pertenecerá obligatoriamente a una
+Etapa. Las Etapas activas sumarán 100 % antes de iniciar el Proyecto.
 
-## Secciones principales
+Avance de Etapa = acciones no canceladas completadas / acciones no canceladas.
 
-- Contexto
-- Decisión
-- Alternativas consideradas
-- Consecuencias
-- Referencias
+Avance de Proyecto = suma de `peso × avance_etapa / 100`.
 
-## Nota
+Una Etapa sin acciones vale 0 % hasta que se complete explícitamente, momento en el que
+vale 100 %. `overdue` se calcula y no se almacena como estado.
 
-Este documento será completado durante el desarrollo.
+## Alternativas descartadas
+
+- Avance manual: subjetivo y fácil de desactualizar.
+- Hitos: no representan fases completas.
+- Acciones independientes: rompen la estructura definida en la Biblia.
+- Guardar `overdue`: genera inconsistencias con el paso del tiempo.
+
+## Consecuencias
+
+- Deben validarse pesos antes de iniciar.
+- Cancelar una Etapa exige redistribuir pesos.
+- Completar/cancelar Acciones recalcula el avance.
+- Las acciones canceladas no penalizan el cálculo.

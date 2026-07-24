@@ -1,24 +1,16 @@
-# Navigation
+# Navegación
 
-> Estado: Draft
-> Última actualización: 2026-07-21
+> Estado: Activo
+> Última actualización: 2026-07-24
 
-## Objetivo
+## Navegación principal
 
-Definir la documentación oficial de UI para Navigation.
+- Dashboard.
+- Personas.
+- Equipo, cuando el miembro tenga permiso.
+- Organización, cuando pueda administrarla.
+- Membresía, cuando pueda consultarla.
+- Perfil y cierre de sesión.
 
-## Propósito
-
-Este documento servirá como referencia para organizar criterios visuales, patrones y decisiones de interfaz relacionados con Navigation.
-
-## Secciones principales
-
-- Alcance
-- Principios
-- Patrones
-- Componentes relacionados
-- Pendientes
-
-## Nota
-
-Este documento será completado durante el desarrollo.
+Los elementos sin permiso no se muestran, pero ocultarlos nunca sustituye la Policy.
+La Organización seleccionada debe permanecer visible y poder cambiarse.

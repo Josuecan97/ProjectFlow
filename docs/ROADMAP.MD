@@ -1,88 +1,60 @@
-# ProjectFlow - Roadmap
+# ProjectFlow — Roadmap
 
----
+> Estado: Aprobado
+> Última actualización: 2026-07-24
 
-# MVP
+## MVP
 
-## Sprint 1
+1. Sprint 0 — completado: plataforma, autenticación, Organizaciones, equipo,
+   invitaciones, roles, permisos, membresía comercial, configuración base y Dashboard
+   inicial de infraestructura.
+2. Sprint 1 — aprobado y congelado: Personas, roles comerciales, contactos,
+   restricciones multitenant en base de datos y análisis estático.
+3. Sprint 2: Cotizaciones.
+4. Sprint 3: Proyectos y participantes.
+5. Sprint 4: Etapas y Acciones.
+6. Sprint 5: Bitácora y Archivos.
+7. Sprint 6: Portal y Automatizaciones básicas.
+8. Sprint 7: Dashboard de negocio y estabilización del MVP.
 
-- Autenticación
-- Organización
-- Usuarios
+El antiguo Sprint 8 fue absorbido por el Sprint 7 después de adelantar Personas al
+Sprint 1. Su documento se conserva únicamente como registro histórico.
 
----
+El MVP se considera terminado únicamente cuando cumple los criterios de salida de
+`MVP_TECHNICAL_SPEC.md`.
 
-## Sprint 2
+## Versión 1
 
-- Personas
-- Cotizaciones
+- Reportes avanzados.
+- Calendario.
+- Notificaciones y automatizaciones configurables más avanzadas.
+- Encuestas completas y métricas de satisfacción.
 
----
+## Versión 2
 
-## Sprint 3
+- Inteligencia artificial.
+- API pública.
+- Integraciones.
+- Marketplace.
+- Aplicación móvil.
 
-- Proyectos
-- Etapas
+## Backlog
 
----
+- Firma electrónica.
+- OCR.
+- WhatsApp.
+- Google Drive y Microsoft 365.
+- Integraciones ERP.
+- Chat interno.
 
-## Sprint 4
+## Deuda técnica planificada posterior al MVP
 
-- Acciones
-- Bitácora
+- Múltiples teléfonos por Persona.
+- Múltiples correos electrónicos por Persona.
+- Redes sociales por Persona.
+- Selector de contactos con autocompletado paginado.
+- Búsqueda Full-Text o motor especializado cuando el volumen lo justifique.
+- Formularios compartidos mediante Livewire Form Objects.
 
----
-
-## Sprint 5
-
-- Archivos
-- Portal del Cliente
-
----
-
-## Sprint 6
-
-- Dashboard
-- Ajustes
-- Corrección de errores
-
----
-
-# Versión 1.0
-
-- Automatizaciones
-- Reportes
-- Calendario
-- Notificaciones
-
----
-
-# Versión 2.0
-
-- Inteligencia Artificial
-- API Pública
-- Integraciones
-- Marketplace
-- Aplicación móvil
-
----
-
-# Backlog
-
-Todo lo que no pertenezca al MVP debe registrarse aquí.
-
-Ejemplos:
-
-- Firma electrónica
-- OCR
-- WhatsApp
-- Google Drive
-- Microsoft 365
-- Integraciones ERP
-- Chat interno
-
----
-
-# Objetivo
-
-Liberar un MVP funcional lo antes posible y evolucionar el producto mediante iteraciones.
+Todo elemento nuevo debe justificar el problema, respetar la Biblia y no ampliar el MVP
+sin decisión expresa del Product Owner.

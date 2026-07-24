@@ -1,8 +1,8 @@
 # AI_CONTEXT.md
 
-> Última actualización: 2026-07-21
+> Última actualización: 2026-07-24
 > Proyecto: ProjectFlow
-> Estado: MVP en desarrollo
+> Estado: Sprint 1 — Personas completado; esperando aprobación para Sprint 2
 
 ---
 
@@ -70,13 +70,13 @@ Cada módulo debe respetar esta filosofía.
 
 Backend
 
-- Laravel 12
+- Laravel 13
 
 Frontend
 
-- Livewire 3
-- Volt
-- Flux UI
+- Livewire 4
+- Volt 1
+- Flux UI 2
 - Tailwind CSS
 
 Base de datos
@@ -89,6 +89,16 @@ Servicios preparados
 - Horizon
 - Reverb
 - AWS S3
+
+---
+
+# Estado de implementación
+
+Sprint 0 está completado e incluye plataforma, autenticación, Organizaciones, equipo,
+invitaciones, roles, permisos, membresía comercial y Dashboard inicial.
+
+Sprint 1 completó Personas, roles comerciales y contactos. Cotizaciones será Sprint 2
+y no debe iniciarse sin aprobación del Product Owner.
 
 ---
 
@@ -220,7 +230,8 @@ Cuando una Acción termina puede generar automáticamente una Actividad.
 
 Registro cronológico de hechos.
 
-No es editable.
+Permite crear, editar y eliminar registros según permisos, conservando auditoría
+técnica de los cambios.
 
 Incluye:
 
@@ -281,9 +292,9 @@ Las Notas internas son diferentes de la Bitácora.
 
 ---
 
-El Historial del sistema es automático.
+El historial técnico de cambios es automático y no editable desde la interfaz.
 
-Nunca editable.
+La Bitácora funcional sí permite edición y eliminación autorizadas.
 
 ---
 
@@ -347,13 +358,14 @@ No sobrecomplicar la arquitectura.
 - Bitácora
 - Archivos
 - Portal
+- Automatizaciones básicas
 - Dashboard
 
 ---
 
 ## V1
 
-- Automatizaciones
+- Automatizaciones avanzadas
 - Reportes
 - Calendario
 - Notificaciones

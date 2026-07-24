@@ -1,24 +1,14 @@
 # Queues
 
-> Estado: Draft
-> Última actualización: 2026-07-21
+> Estado: Propuesta para aprobación
+> Última actualización: 2026-07-23
 
-## Objetivo
+Se enviarán a cola correos, notificaciones, PDF, procesamiento de imágenes y efectos
+externos de automatizaciones. Las mutaciones necesarias para confirmar el caso de uso
+permanecen en la transacción síncrona.
 
-Definir la documentación oficial sobre Queues.
+Todo Job incluirá `organization_id`, datos serializables mínimos, timeout, intentos
+limitados y una estrategia de idempotencia. Se despachará después del commit.
 
-## Propósito
-
-Este documento servirá como referencia para ordenar criterios técnicos, decisiones y convenciones relacionadas con Queues.
-
-## Secciones principales
-
-- Alcance
-- Convenciones
-- Criterios de implementación
-- Referencias relacionadas
-- Pendientes
-
-## Nota
-
-Este documento será completado durante el desarrollo.
+El entorno local podrá usar driver `sync` o `database`. Redis/Horizon se habilitará
+cuando el despliegue lo requiera sin cambiar contratos de Jobs.

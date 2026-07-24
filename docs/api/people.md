@@ -1,25 +1,16 @@
-# People API
+# Personas API
 
-> Estado: Draft
-> Última actualización: 2026-07-21
+> Estado: Fuera del MVP actual
+> Última actualización: 2026-07-24
 
 ## Objetivo
 
-Definir la documentación oficial de API para People.
+Registrar que Sprint 1 ofrece el módulo Personas mediante la interfaz web de
+Livewire/Volt y no publica una API externa.
 
-## Propósito
+## Contrato actual
 
-Este documento servirá como referencia para organizar contratos, criterios y decisiones de API relacionados con People.
-
-## Secciones principales
-
-- Alcance
-- Endpoints
-- Autorización
-- Validación
-- Respuestas
-- Pendientes
-
-## Nota
-
-Este documento será completado durante el desarrollo.
+No se crean endpoints REST ni tokens de integración en Sprint 1. Las acciones internas
+del dominio serán reutilizables por una API futura sin exponerlas prematuramente.
+Cuando la API pública sea aprobada deberá conservar Policies, aislamiento por
+Organización, validaciones y reglas de solo lectura.

@@ -1,24 +1,9 @@
-# Sprint 02
+# Sprint 02 — Cotizaciones
 
-> Estado: Draft
-> Última actualización: 2026-07-21
+> Estado: Propuesto
 
-## Objetivo
+Crear Cotizaciones versionadas, conceptos, cálculos monetarios, estados, aprobación y
+PDF básico. Después de aprobar se puede editar creando otra versión; la copia aprobada
+se conserva y puede originar varios Proyectos.
 
-Definir la documentación oficial del Sprint 02.
-
-## Propósito
-
-Este documento servirá como referencia para organizar alcance, prioridades y seguimiento del Sprint 02.
-
-## Secciones principales
-
-- Objetivos
-- Alcance
-- Entregables
-- Riesgos
-- Pendientes
-
-## Nota
-
-Este documento será completado durante el desarrollo.
+Aceptación: totales probados, transiciones autorizadas y trazabilidad de cada versión.

@@ -2,7 +2,15 @@
 
 namespace App\Providers;
 
+use App\Domain\Organizations\Models\Organization;
+use App\Domain\Organizations\Policies\OrganizationPolicy;
+use App\Domain\Organizations\Support\CurrentOrganization;
+use App\Domain\People\Models\Person;
+use App\Domain\People\Policies\PersonPolicy;
+use App\Http\Middleware\EnsureOrganizationSelected;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
+use Livewire\Livewire;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -11,7 +19,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->scoped(CurrentOrganization::class);
     }
 
     /**
@@ -19,6 +27,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Gate::policy(Organization::class, OrganizationPolicy::class);
+        Gate::policy(Person::class, PersonPolicy::class);
+        Livewire::addPersistentMiddleware(EnsureOrganizationSelected::class);
     }
 }

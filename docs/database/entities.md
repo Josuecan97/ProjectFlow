@@ -1,24 +1,20 @@
 # Entities
 
-> Estado: Draft
-> Última actualización: 2026-07-21
+> Estado: Aprobado para Sprints 0 y 1
+> Última actualización: 2026-07-24
 
-## Objetivo
+Entidades del MVP:
 
-Definir la documentación oficial sobre Entities.
+- Organization, User, OrganizationMember, Role, Permission.
+- OrganizationSubscription y OrganizationSubscriptionEvent.
+- Person, PersonRole, PersonRelationship.
+- Quote, QuoteVersion, QuoteItem.
+- Project, ProjectParticipant.
+- Stage, Action, ActionDependency.
+- ActivityEntry y ActivityEntryRevision.
+- File, FileAttachment.
+- ProjectPortal, PortalAccessLog.
+- AutomationSetting.
 
-## Propósito
-
-Este documento servirá como referencia para organizar criterios, relaciones y decisiones relacionadas con Entities.
-
-## Secciones principales
-
-- Alcance
-- Entidades
-- Reglas de datos
-- Referencias relacionadas
-- Pendientes
-
-## Nota
-
-Este documento será completado durante el desarrollo.
+`MVP_TECHNICAL_SPEC.md` define atributos, estados y reglas. Los catálogos estables se
+representan mediante Enums o seeders; no se crearán tablas para valores sin metadatos.

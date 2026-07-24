@@ -2198,7 +2198,11 @@ La Bitácora representa el historial oficial de un Proyecto.
 
 Todo acontecimiento importante que ocurra durante el ciclo de vida del Proyecto deberá quedar registrado en ella.
 
-La Bitácora constituye la memoria permanente del Proyecto y permite reconstruir cronológicamente todo lo que ha sucedido desde su creación hasta su cierre.
+La Bitácora constituye la memoria operativa del Proyecto y permite consultar cronológicamente lo registrado desde su creación hasta su cierre.
+
+Sus registros podrán crearse, editarse y eliminarse según los permisos del usuario.
+
+El sistema deberá conservar auditoría técnica de las modificaciones y eliminaciones.
 
 ---
 
@@ -2399,10 +2403,11 @@ Durante el diseño del sistema se establecieron los siguientes principios.
 
 - La Bitácora representa historial.
 - Nunca representa trabajo pendiente.
-- El historial nunca debe eliminarse.
+- Los registros pueden editarse y eliminarse con los permisos correspondientes.
+- Las modificaciones y eliminaciones deben conservar auditoría técnica.
 - Toda acción importante debe registrarse.
 - El registro automático tiene prioridad sobre el manual.
-- La cronología debe mantenerse intacta.
+- La presentación cronológica debe mantenerse consistente.
 
 ---
 
@@ -2450,7 +2455,255 @@ Estado:
 
 ---
 
+## DA-025
+
+Los registros de Bitácora podrán crearse, editarse y eliminarse según permisos.
+
+Las modificaciones y eliminaciones conservarán auditoría técnica.
+
+Estado:
+
+✅ Aprobada.
+
+---
+
 # Objetivo final
 
 El módulo de Bitácora debe convertirse en la memoria permanente de cada Proyecto, permitiendo conocer de forma cronológica, confiable y transparente todo lo que ocurrió durante su ejecución, facilitando la colaboración del equipo y la comunicación con el cliente.
 
+---
+
+# Estado actual del proyecto
+
+Al momento de redactar esta versión del PROJECT_BIBLE, las siguientes decisiones se consideran oficiales y congeladas.
+
+No deben replantearse durante la implementación salvo decisión expresa del Product Owner.
+
+---
+
+## Stack tecnológico
+
+Se ha definido el siguiente stack tecnológico para el desarrollo del sistema.
+
+- Laravel como framework principal.
+- Livewire para la construcción de interfaces reactivas.
+- Volt para componentes y páginas.
+- Flux UI como biblioteca principal de componentes.
+- Tailwind CSS para estilos.
+- MariaDB como motor de base de datos.
+- Redis, Horizon y Reverb preparados para futuras versiones y escalabilidad.
+
+La versión exacta de cada tecnología podrá actualizarse antes del inicio de la implementación sin modificar la arquitectura del sistema.
+
+---
+
+## Modelo de negocio
+
+El flujo oficial del sistema queda definido como:
+
+Persona
+→ Cotización
+→ Proyecto
+→ Etapas
+→ Acciones
+→ Bitácora
+→ Portal del Cliente
+→ Entrega
+→ Encuesta
+
+Todo el sistema gira alrededor del Proyecto.
+
+---
+
+## Personas
+
+Se elimina completamente la separación entre Clientes y Proveedores.
+
+Existe una única entidad llamada Persona.
+
+Una Persona puede desempeñar múltiples roles simultáneamente.
+
+Los roles cambian.
+
+La Persona permanece.
+
+---
+
+## Cotizaciones
+
+Toda Cotización pertenece a una Persona.
+
+Una Persona puede tener múltiples Cotizaciones.
+
+Una Cotización aprobada podrá generar uno o varios Proyectos.
+
+Las Cotizaciones forman parte permanente del historial comercial.
+
+Nunca deberán eliminarse.
+
+---
+
+## Proyectos
+
+El Proyecto representa la entidad central de ProjectFlow.
+
+Todo módulo importante se relaciona con un Proyecto.
+
+El avance del Proyecto será calculado automáticamente mediante el progreso de sus Etapas.
+
+---
+
+## Etapas
+
+ProjectFlow utiliza Etapas en lugar de Hitos.
+
+Cada Etapa posee un peso porcentual.
+
+La suma de todas las Etapas representa el 100 % del Proyecto.
+
+---
+
+## Acciones
+
+Toda Acción pertenece obligatoriamente a una Etapa.
+
+No existen Acciones independientes.
+
+Las Acciones representan trabajo pendiente.
+
+Nunca representan historial.
+
+---
+
+## Bitácora
+
+La Bitácora representa el historial oficial del Proyecto.
+
+Registra únicamente hechos ocurridos.
+
+No representa trabajo pendiente.
+
+Los eventos importantes deberán registrarse automáticamente siempre que sea posible.
+
+Los registros podrán editarse y eliminarse con autorización, conservando auditoría
+técnica de los cambios.
+
+---
+
+## Automatizaciones
+
+Las Automatizaciones forman parte del MVP.
+
+Se basarán en eventos del sistema.
+
+La inteligencia artificial no forma parte del MVP y se considera una evolución futura del producto.
+
+---
+
+## Dashboard
+
+El Dashboard es un centro de decisiones.
+
+No es una pantalla de navegación.
+
+Debe responder inmediatamente:
+
+- ¿Qué requiere mi atención?
+- ¿Qué ocurrió mientras no estaba?
+- ¿Cómo se encuentran mis proyectos?
+- ¿Qué debo hacer ahora?
+
+---
+
+## Implementación
+
+El orden oficial de implementación será el siguiente.
+
+1. Sprint 0 — completado: plataforma, autenticación, Organización, miembros internos,
+   invitaciones, roles, permisos, membresía comercial, configuración base y Dashboard
+   inicial de infraestructura.
+2. Sprint 1 — aprobado y congelado: Personas, roles comerciales, contactos,
+   integridad multitenant en base de datos y análisis estático.
+3. Sprint 2: Cotizaciones.
+4. Sprint 3: Proyectos y participantes.
+5. Sprint 4: Etapas y Acciones.
+6. Sprint 5: Bitácora y Archivos.
+7. Sprint 6: Portal del Cliente y Automatizaciones.
+8. Sprint 7: Dashboard de negocio y estabilización.
+
+---
+## Stack tecnológico
+
+El stack oficial de ProjectFlow queda definido de la siguiente manera.
+
+Backend
+
+- PHP 8.4+
+- Laravel
+- Livewire
+- Volt
+
+Frontend
+
+- Tailwind CSS
+- Flux UI
+
+Base de datos
+
+- MariaDB
+
+Infraestructura
+
+- Redis (preparado)
+- Horizon (preparado)
+- Reverb (preparado)
+
+Herramientas
+
+- Composer
+- Larastan / PHPStan
+- Vite
+- Git
+
+## Política obligatoria de cierre de Sprints
+
+Cada Sprint deberá finalizar con implementación, validación técnica, auditoría
+completa, corrección automática de problemas menores y reporte técnico. El siguiente
+Sprint no podrá comenzar sin aprobación expresa.
+
+## Miembros internos y membresía comercial
+
+ProjectFlow distingue dos conceptos.
+
+Los Miembros internos representan a los Usuarios que pertenecen a una Organización.
+
+La Membresía comercial representa el acceso de la Organización a ProjectFlow.
+
+Estos conceptos nunca deberán utilizar la misma entidad.
+
+Cuando se crea una Organización, el sistema asignará automáticamente una Membresía de
+Prueba con las siguientes reglas:
+
+- Duración de 14 días.
+- Acceso completo a las funciones disponibles.
+- Al expirar, la Organización conserva acceso de solo lectura.
+- Inicialmente podrá sustituirse o renovarse mediante asignación manual.
+- En el futuro podrá activarse o renovarse automáticamente mediante pagos confirmados.
+- Todo cambio de membresía conservará historial.
+
+Los planes, precios y proveedor de pagos se definirán posteriormente.
+
+## Especificación técnica propuesta
+
+Los siguientes temas se desarrollan en `MVP_TECHNICAL_SPEC.md` y requieren aprobación
+del Product Owner antes de comenzar la implementación.
+
+- Modelo completo de base de datos.
+- Arquitectura técnica de Laravel.
+- Estrategia de multitenancy por Organización.
+- Modelo de Roles y Permisos.
+- Seguridad del Portal del Cliente.
+- Arquitectura de Automatizaciones.
+- ADR (Architecture Decision Records).
+- Convenciones de desarrollo.
+- Estrategia de pruebas.

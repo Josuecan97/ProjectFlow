@@ -1,25 +1,35 @@
 # Automations
 
-> Estado: Draft
-> Última actualización: 2026-07-21
+> Estado: Propuesta para aprobación
+> Última actualización: 2026-07-23
 
-## Objetivo
+## Alcance del MVP
 
-Definir la documentación oficial del módulo Automations.
+Automatizaciones basadas en eventos mediante un catálogo predefinido. Cada Organización
+puede activar y configurar combinaciones permitidas, pero no crear código, condiciones
+arbitrarias o flujos encadenados.
 
-## Propósito
+## Catálogo inicial
 
-Este documento servirá como referencia para organizar el alcance, criterios y decisiones del módulo Automations.
+- Acción asignada, próxima a vencer, vencida o completada.
+- Etapa completada.
+- Proyecto con cambio de estado o entregado.
 
-## Secciones principales
+Acciones permitidas: crear Bitácora y enviar notificaciones internas o correo cuando
+esté configurado.
 
-- Alcance
-- Reglas del módulo
-- Datos relacionados
-- Interfaz
-- Permisos
-- Pendientes
+## Reglas
 
-## Nota
+- Se ejecutan después del commit.
+- Jobs idempotentes y reintentables.
+- Conservan contexto de Organización.
+- Nunca evaden Policies ni exponen contenido interno en el Portal.
+- Fallar una notificación no revierte la operación de negocio ya confirmada.
 
-Este documento será completado durante el desarrollo.
+## Permiso
+
+Solo `automations.manage` puede activar o modificar configuraciones.
+
+## Fuera del MVP
+
+Constructor visual, condiciones libres, webhooks configurables y acciones con IA.

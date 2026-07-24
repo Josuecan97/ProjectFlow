@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Domain\Organizations\Actions\CreateOrganization;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -15,11 +16,23 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        $this->call(AccessControlSeeder::class);
+        $this->call(PersonRoleSeeder::class);
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        $user = User::query()->updateOrCreate([
+            'email' => 'demo@projectflow.test',
+        ], [
+            'name' => 'Usuario Demo',
+            'email_verified_at' => now(),
+            'password' => 'password',
         ]);
+
+        if ($user->organizationMembers()->doesntExist()) {
+            app(CreateOrganization::class)->handle($user, [
+                'name' => 'Organización Demo',
+            ]);
+        }
+
+        $this->call(PeopleDemoSeeder::class);
     }
 }

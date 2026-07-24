@@ -1,24 +1,31 @@
 # Events
 
-> Estado: Draft
-> Última actualización: 2026-07-21
+> Estado: Propuesta para aprobación
+> Última actualización: 2026-07-23
 
-## Objetivo
+## Principios
 
-Definir la documentación oficial sobre Events.
+Los eventos describen hechos consumados y se emiten después de confirmar la transacción.
+No sustituyen validación ni autorización. Deben transportar identificadores y contexto
+de Organización, evitando grafos completos de modelos serializados.
 
-## Propósito
+## Catálogo inicial
 
-Este documento servirá como referencia para ordenar criterios técnicos, decisiones y convenciones relacionadas con Events.
+- `QuoteApproved`
+- `ProjectCreated`
+- `ProjectStatusChanged`
+- `StageCompleted`
+- `ActionAssigned`
+- `ActionCompleted`
+- `FileUploaded`
+- `ActivityEntryCreated`
+- `PortalEnabled`
 
-## Secciones principales
+## Reglas
 
-- Alcance
-- Convenciones
-- Criterios de implementación
-- Referencias relacionadas
-- Pendientes
-
-## Nota
-
-Este documento será completado durante el desarrollo.
+- Nombre en pasado.
+- Listener pequeño; trabajo externo en Job.
+- Ningún listener debe producir ciclos.
+- Los efectos repetibles usan clave de idempotencia.
+- Crear Bitácora automáticamente es un efecto de eventos de dominio, no de observers
+  genéricos difíciles de controlar.

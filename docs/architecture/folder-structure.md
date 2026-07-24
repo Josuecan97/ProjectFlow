@@ -1,24 +1,39 @@
 # Folder Structure
 
-> Estado: Draft
-> Última actualización: 2026-07-21
+> Estado: Activo
+> Última actualización: 2026-07-24
 
-## Objetivo
+```text
+app/
+  Domain/{Domain}/
+    Actions/
+    Enums/
+    Events/
+    Jobs/
+    Listeners/
+    Models/
+    Policies/
+    Queries/
+    Rules/
+    Services/
+  Http/
+  Providers/
+database/
+  factories/
+  migrations/
+  seeders/
+docs/
+resources/
+  css/
+  js/
+  views/
+    pages/              # componentes funcionales Volt
+routes/
+tests/
+  Feature/
+  Unit/
+```
 
-Definir la documentación oficial sobre Folder Structure.
-
-## Propósito
-
-Este documento servirá como referencia para ordenar criterios técnicos, decisiones y convenciones relacionadas con Folder Structure.
-
-## Secciones principales
-
-- Alcance
-- Convenciones
-- Criterios de implementación
-- Referencias relacionadas
-- Pendientes
-
-## Nota
-
-Este documento será completado durante el desarrollo.
+Solo se crean carpetas cuando tengan contenido. Las pantallas Volt permanecen en
+`resources/views/pages` y llaman Actions del dominio. Los modelos se ubican dentro del
+dominio, no se duplican en `app/Models`. Los componentes no contienen reglas de negocio.
