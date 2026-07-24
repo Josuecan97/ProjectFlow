@@ -2671,6 +2671,24 @@ Cada Sprint deberá finalizar con implementación, validación técnica, auditor
 completa, corrección automática de problemas menores y reporte técnico. El siguiente
 Sprint no podrá comenzar sin aprobación expresa.
 
+## Flujo oficial de desarrollo
+
+ProjectFlow utiliza Trunk-Based Development.
+
+- `main` es la única rama estable y debe permanecer compilable, migrable, probada y
+  lista para liberar.
+- El trabajo se divide en ramas feature de corta duración y objetivo único.
+- Toda integración ocurre mediante Pull Request.
+- Composer Validate, Laravel Pint, Larastan/PHPStan, pruebas, build y validación de
+  migraciones cuando aplique deben terminar correctamente antes del merge.
+- Cada Sprint finaliza con una rama y Pull Request de auditoría.
+- Los tags se crean únicamente sobre `main`, después de la auditoría, cierre aprobado
+  y autorización del Product Owner.
+- No se utiliza GitFlow clásico ni una rama `develop` permanente.
+
+La especificación operativa se encuentra en
+`docs/architecture/development-workflow.md`.
+
 ## Miembros internos y membresía comercial
 
 ProjectFlow distingue dos conceptos.
@@ -2707,5 +2725,3 @@ del Product Owner antes de comenzar la implementación.
 - ADR (Architecture Decision Records).
 - Convenciones de desarrollo.
 - Estrategia de pruebas.
-
-JJJJJ

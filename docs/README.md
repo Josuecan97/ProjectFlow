@@ -20,6 +20,7 @@ Este documento ayuda a navegar la carpeta `docs/` y orienta a las IA y al equipo
 - [Database](DATABASE.MD)
 - [Decisions](DECISIONS.MD)
 - [Roadmap](ROADMAP.MD)
+- [Development Workflow](architecture/development-workflow.md)
 
 ## Secciones
 
@@ -42,6 +43,8 @@ Antes de implementar cualquier funcionalidad:
 5. Revisar [Decisions](DECISIONS.MD) y los ADR relacionados.
 6. Confirmar que el cambio esté alineado con [Roadmap](ROADMAP.MD).
 7. Mantener la documentación sincronizada con el código.
+8. Seguir el flujo de ramas, Pull Requests, auditoría y release definido en
+   [Development Workflow](architecture/development-workflow.md).
 
 ## Autoridad documental
 

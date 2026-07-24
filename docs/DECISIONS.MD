@@ -197,3 +197,15 @@ Personas se adelanta oficialmente al Sprint 1. Los Sprints posteriores se recorr
 posición y el Dashboard de negocio con estabilización queda en Sprint 7.
 
 Estado: ✅ Aprobado el 2026-07-24.
+
+## DT-011
+
+ProjectFlow utiliza Trunk-Based Development con `main` como única rama estable,
+ramas de trabajo de corta duración y Pull Requests obligatorios. No se utilizará
+GitFlow clásico.
+
+La auditoría y los checks técnicos son obligatorios antes del merge. Los tags se crean
+únicamente sobre `main` después del cierre aprobado de cada Sprint y la autorización
+del Product Owner.
+
+Estado: ✅ Aprobado el 2026-07-24.

@@ -25,6 +25,10 @@
 
 ## Commits y revisión
 
+- ProjectFlow utiliza Trunk-Based Development según
+  [development-workflow.md](development-workflow.md).
+- `main` es la única rama estable y todo cambio se integra mediante Pull Request.
+- Las ramas de trabajo son pequeñas, coherentes y de corta duración.
 - Cambios pequeños y coherentes.
 - Pruebas del comportamiento nuevo o corregido.
 - Documentación actualizada cuando cambie una regla.
@@ -40,3 +44,5 @@
 4. Corrección automática de problemas menores.
 5. Reporte técnico.
 6. Aprobación explícita antes de iniciar el siguiente Sprint.
+
+El tag oficial se crea sobre `main` únicamente después del cierre aprobado.

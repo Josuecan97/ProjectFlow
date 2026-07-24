@@ -100,6 +100,11 @@ invitaciones, roles, permisos, membresía comercial y Dashboard inicial.
 Sprint 1 completó Personas, roles comerciales y contactos. Cotizaciones será Sprint 2
 y no debe iniciarse sin aprobación del Product Owner.
 
+ProjectFlow utiliza Trunk-Based Development. `main` es la única rama estable; toda
+implementación usa ramas pequeñas y Pull Requests. La auditoría precede al merge y los
+tags se crean únicamente después del cierre aprobado de cada Sprint. No se utiliza
+GitFlow clásico.
+
 ---
 
 # Filosofía de desarrollo

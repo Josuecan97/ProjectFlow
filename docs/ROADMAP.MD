@@ -23,6 +23,11 @@ Sprint 1. Su documento se conserva únicamente como registro histórico.
 El MVP se considera terminado únicamente cuando cumple los criterios de salida de
 `MVP_TECHNICAL_SPEC.md`.
 
+Todos los Sprints posteriores al Sprint 1 se desarrollan mediante Trunk-Based
+Development, ramas pequeñas y Pull Requests. Cada cierre requiere auditoría, reporte,
+aprobación del Product Owner y tag posterior sobre `main`. El proceso completo se
+define en `architecture/development-workflow.md`.
+
 ## Versión 1
 
 - Reportes avanzados.
